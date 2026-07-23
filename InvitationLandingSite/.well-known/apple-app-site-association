@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "297V2Y6C2D.com.rpsstudio.maggio"
+        ],
+        "components": [
+          {
+            "/": "/invite/*",
+            "comment": "Maggio one-time invitation links"
+          }
+        ]
+      }
+    ]
+  }
+}
