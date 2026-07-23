@@ -28,7 +28,7 @@
   });
 
   // Populate this after Maggio has a public App Store or TestFlight destination.
-  const appStoreURL = "";
+  const appStoreURL = "https://apps.apple.com/us/app/maggio-club/id6761921851";
   if (appStoreURL) {
     const appStoreLink = document.querySelector("#app-store");
     appStoreLink.href = appStoreURL;
