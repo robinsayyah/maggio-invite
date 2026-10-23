@@ -36,22 +36,23 @@
     document.querySelector("#open-app").href = `maggio://invite/open?token=${encodeURIComponent(value)}`;
     copyValue = formattedCode;
   } else {
-    document.title = `Open ${kind} in Maggio`;
+    const names = params.getAll("name");
+    const name = names.length === 1 ? names[0].trim() : "";
+    const displayName = name && name.length <= 500 && !/[\u0000-\u001f\u007f-\u009f]/.test(name) ? name : kind;
+    document.title = `Join ${displayName} on Maggio`;
     document.querySelector(".eyebrow").textContent = `MAGGIO ${kind.toUpperCase()}`;
-    document.querySelector("h1").textContent = `Open ${kind}`;
+    document.querySelector("h1").textContent = `Join ${displayName}`;
     document.querySelector(".intro").textContent = `Open this ${kind} in Maggio.`;
     document.querySelector(".code-label").hidden = true;
     document.querySelector("#invitation-code").hidden = true;
     document.querySelector("#open-app").href = `maggio://${kind === "club" ? "clubs" : "events"}/open?${kind}=${encodeURIComponent(value)}`;
-    copyButton.textContent = "Copy link";
-    const link = new URL("https://invite.maggio.club/invite/");
-    link.searchParams.set(kind, value);
-    copyValue = link.href;
-    help.textContent = `Don't have Maggio yet? Install Maggio, sign in with Apple, then open this link again. Access follows the ${kind}'s permissions.`;
+    copyButton.hidden = true;
+    document.querySelector("#copy-result").hidden = true;
+    help.textContent = `Don't have Maggio yet? Install Maggio, sign in with Apple, then open this link again.`;
   }
   validSection.hidden = false;
 
-  copyButton.addEventListener("click", async () => {
+  if (isInvitation) copyButton.addEventListener("click", async () => {
     const status = document.querySelector("#copy-result");
     try {
       await navigator.clipboard.writeText(copyValue);
