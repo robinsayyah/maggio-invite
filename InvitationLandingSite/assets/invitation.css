@@ -260,3 +260,12 @@ h1 {
     padding: 28px 20px 24px;
   }
 }
+
+/* Author display styles must not reveal hidden code fields or actions. */
+[hidden] {
+  display: none !important;
+}
+
+h1 {
+  overflow-wrap: anywhere;
+}
